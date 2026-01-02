@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Jangan sentuh file & folder asli (CSS, JS, gambar)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Semua request lain lewat index.php
+RewriteRule ^ index.php [L]

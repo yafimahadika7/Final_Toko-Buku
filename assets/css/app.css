@@ -1,0 +1,4 @@
+:root{color-scheme:dark}
+/* tiny polish */
+*{scrollbar-color:#334155 transparent; scrollbar-width:thin}
+a{transition:all .15s ease}
