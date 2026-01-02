@@ -1,29 +1,16 @@
 <?php
 declare(strict_types=1);
 
-/**
- * =========================================================
- * AUTO BASE_URL (AMAN UNTUK VPS / HOSTING / LOCALHOST)
- * - DocumentRoot diarahkan ke folder /public
- * - TIDAK PERNAH menambahkan /public ke URL
- * =========================================================
- */
+// AUTO BASE_URL (AMAN UNTUK LOCAL SUBFOLDER & HOSTING ROOT)
+$scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$host   = $_SERVER['HTTP_HOST'];
 
-// Tentukan scheme (http / https)
-$scheme = 'http';
-if (
-    (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-    || ($_SERVER['SERVER_PORT'] ?? null) == 443
-) {
-    $scheme = 'https';
-}
+// Deteksi folder project (untuk localhost)
+$scriptName = dirname($_SERVER['SCRIPT_NAME']); 
+$basePath   = str_replace('/public', '', $scriptName);
+$basePath   = ($basePath === '/') ? '' : $basePath;
 
-// Host (domain atau IP)
-$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+define('BASE_URL', $scheme . '://' . $host . $basePath);
 
-// Karena DocumentRoot sudah /public,
-// BASE_URL cukup domain saja
-define('BASE_URL', $scheme . '://' . $host);
-
-// Nama aplikasi
+// App name
 define('APP_NAME', 'Store Admin');
