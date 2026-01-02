@@ -1,8 +1,8 @@
 -- Store Admin (v0-style) schema
-CREATE DATABASE IF NOT EXISTS toko_komputer
+CREATE DATABASE IF NOT EXISTS toko_komputer2
 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-USE toko_komputer;
+USE toko_komputer2;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
